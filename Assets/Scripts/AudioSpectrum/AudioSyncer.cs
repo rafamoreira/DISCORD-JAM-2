@@ -20,35 +20,34 @@ public class AudioSyncer : MonoBehaviour
 
     protected bool m_isBeat;
 
-    public virtual void OnBeat(){
+    public virtual void OnBeat() {
 	Debug.Log("beat");
 	m_timer = 0;
 	m_isBeat = true;
     }
 
-    public virtual void OnUpdate()
-	{ 
-		// update audio value
-		m_previousAudioValue = m_audioValue;
-		m_audioValue = AudioSpectrum.spectrumValue;
+    public virtual void OnUpdate() { 
+	// update audio value
+	m_previousAudioValue = m_audioValue;
+	m_audioValue = AudioSpectrum.spectrumValue;
 
-		// if audio value went below the bias during this frame
-		if (m_previousAudioValue > bias && m_audioValue <= bias) {
-			// if minimum beat interval is reached
-			if (m_timer > timeStep)
-				OnBeat();
-		}
-
-		// if audio value went above the bias during this frame
-		if (m_previousAudioValue <= bias && m_audioValue > bias) {
-			// if minimum beat interval is reached
-			if (m_timer > timeStep)
-				OnBeat();
-		}
-		m_timer += Time.deltaTime;
+	// if audio value went below the bias during this frame
+	if (m_previousAudioValue > bias && m_audioValue <= bias) {
+	    // if minimum beat interval is reached
+	    if (m_timer > timeStep)
+		OnBeat();
 	}
 
-    void Update(){
+	// if audio value went above the bias during this frame
+	if (m_previousAudioValue <= bias && m_audioValue > bias) {
+	    // if minimum beat interval is reached
+	    if (m_timer > timeStep)
+		OnBeat();
+	}
+	m_timer += Time.deltaTime;
+    }
+
+    void Update() {
 	OnUpdate();
     }
 }
