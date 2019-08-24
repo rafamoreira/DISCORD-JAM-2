@@ -9,7 +9,7 @@ public class AudioSpectrum : MonoBehaviour
 
 
     private void Start(){
-	m_audioSpectrum = new float[128];
+	m_audioSpectrum = new float[64];
     }
 
     // Update is called once per frame
