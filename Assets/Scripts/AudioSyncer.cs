@@ -26,22 +26,27 @@ public class AudioSyncer : MonoBehaviour
 	m_isBeat = true;
     }
 
-    public virtual void OnUpdate(){
-	m_previousAudioValue = m_audioValue;
-	m_audioValue = AudioSpectrum.spectrumValue;
+    public virtual void OnUpdate()
+	{ 
+		// update audio value
+		m_previousAudioValue = m_audioValue;
+		m_audioValue = AudioSpectrum.spectrumValue;
 
-	if (m_previousAudioValue > bias && m_audioValue <= bias){
-	    if(m_timer > timeStep){
-		OnBeat();
-	    }
-	}
+		// if audio value went below the bias during this frame
+		if (m_previousAudioValue > bias && m_audioValue <= bias) {
+			// if minimum beat interval is reached
+			if (m_timer > timeStep)
+				OnBeat();
+		}
 
-	if (m_previousAudioValue <= bias && m_audioValue > bias){
-	    if (m_timer > timeStep){
-		OnBeat();
-	    }
+		// if audio value went above the bias during this frame
+		if (m_previousAudioValue <= bias && m_audioValue > bias) {
+			// if minimum beat interval is reached
+			if (m_timer > timeStep)
+				OnBeat();
+		}
+		m_timer += Time.deltaTime;
 	}
-    }
 
     void Update(){
 	OnUpdate();
