@@ -7,7 +7,10 @@ public class BeatRetriever : MonoBehaviour
     MusicBuffer mb;
     float timer;
 
-    AudioSource audio_source;
+    public bool play_audio;
+    bool toogle_change = true;
+    
+    public AudioSource audio_source;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +18,7 @@ public class BeatRetriever : MonoBehaviour
         Application.targetFrameRate = 15;
         mb = FindObjectOfType<MusicBuffer>();
         timer = 4.5f;
-	audio_source = GetComponent<AudioSource>();
+	play_audio = false;
     }
 
     void Update()
@@ -29,8 +32,15 @@ public class BeatRetriever : MonoBehaviour
     {
         if (timer <= 0)
         {
-	    audio_source.Play();
+	    play_audio = true;
             mb.RetrieveBeat();
         }
+
+	 if (play_audio && toogle_change)
+	 {
+		audio_source.Play();
+		toogle_change = false;
+	 }
+
     }
 }
