@@ -116,7 +116,7 @@ public class AudioProcessor : MonoBehaviour
 
         lastT = getCurrentTimeMillis ();
         mb = FindObjectOfType<MusicBuffer>();
-	light.SetActive(false);
+        light.SetActive(false);
     }
 
     public void tapTempo ()
@@ -223,7 +223,7 @@ public class AudioProcessor : MonoBehaviour
                 //tapTempo();
                 // make sure the most recent beat wasn't too recently
                 if (sinceLast > tempopd / 4) {
-		    light.SetActive(true);
+                    light.SetActive(true);
                     onBeat.Invoke ();           
                     blipDelay [0] = 1;
                     // record that we did actually mark a beat this frame
@@ -232,11 +232,11 @@ public class AudioProcessor : MonoBehaviour
                     sinceLast = 0;
                 } else {
                     mb.AddNonBeat();
-		    light.SetActive(false);
+                    light.SetActive(false);
                 }
             } else {
                 mb.AddNonBeat();
-		light.SetActive(false);
+                light.SetActive(false);
             }
 
 

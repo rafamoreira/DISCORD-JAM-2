@@ -41,13 +41,13 @@ public class BeatRetriever : MonoBehaviour
             else{
                 light.SetActive(false);
             }
-            float[] spectrum = mb.SpectrumRetrieve();
+            // float[] spectrum = mb.SpectrumRetrieve();
 
-            for (int i = 0; i < spectrum.Length; ++i) {
-                Vector3 start = new Vector3 (i, 0, 170);
-                Vector3 end = new Vector3 (i, spectrum [i] * 10, 0);
-                Debug.DrawLine (start, end);
-            }
+            // for (int i = 0; i < spectrum.Length; ++i) {
+            //     Vector3 start = new Vector3 (i, 0, 170);
+            //     Vector3 end = new Vector3 (i, spectrum [i] * 10, 0);
+            //     Debug.DrawLine (start, end);
+            // }
         }
 
         if (play_audio && toogle_change)
